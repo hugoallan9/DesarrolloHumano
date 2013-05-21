@@ -4,12 +4,14 @@
  */
 package desarrollohumano;
 
+import java.io.Serializable;
+
 /**
  *Clase padre para crear los indices que le
  * corresponden a un pais
  * @author Hugo Allan Garcia 200714466
  */
-public class Indice {
+public class Indice implements Serializable{
     
     float indice;
     

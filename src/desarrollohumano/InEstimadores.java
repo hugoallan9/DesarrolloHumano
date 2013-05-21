@@ -24,14 +24,15 @@ import javax.swing.JTextField;
 public class InEstimadores extends JDialog{
     JFrame ventanaPadre;
     JPanel ingreso = new JPanel();
-    Pais[] pais;
+    Lista pais = new Lista();
     JTextField[] indicador = new JTextField[4];
     JLabel[] etiqueta = new JLabel[4];
     JTextField buscar = new JTextField();
     JButton botonIngreso = new JButton("Aceptar");
-    int r;
+    Pais temp;
     
-    InEstimadores(JFrame fr , Pais[] pai){
+    InEstimadores(JFrame fr , Lista pai, boolean modal){
+        super( fr , modal);
         this.ventanaPadre = fr;
         this.pais = pai;
         initDialogo();
@@ -99,10 +100,8 @@ public class InEstimadores extends JDialog{
     }
     
      private void llamarIngreso(ActionEvent event) {
-         Reporte report = new Reporte();
-         report.ordenNombres(pais, 0 , MenuPrincipal.contador );
-         r = report.encontrarPais(pais, buscar.getText().toUpperCase(), 0, MenuPrincipal.contador);
-         if( r == -1 ){
+         temp = pais.getNodo(buscar.getText(), 2);
+         if( temp.getName().equalsIgnoreCase("") ){
              JOptionPane.showMessageDialog(this,"Pais no ha sido ingresado, Ingreselo primero" , "Error", JOptionPane.ERROR_MESSAGE);
          }else{
                //Inicializando etiquetas
@@ -112,10 +111,15 @@ public class InEstimadores extends JDialog{
                 }
               
                 
+             indicador[0].setText(String.valueOf(temp.getHope()));
+             indicador[1].setText(String.valueOf(temp.getAlfabetizacion()));
+             indicador[2].setText(String.valueOf(temp.getMatricula()));
+             indicador[3].setText(String.valueOf(temp.getProducto()));
+                
              for ( int i = 0 ; i < 4 ; i++){
                     etiqueta[i].setBounds(40, 1 + 40 * i , 230, 20);
                     indicador[i].setBounds(40, 20 + 40 * i , 230, 15);
-                    indicador[i].setText(String.valueOf(pais[r].valores[i]));
+                    
                     ingreso.add(etiqueta[i]);
                     ingreso.add(indicador[i]);
              }
@@ -138,63 +142,61 @@ public class InEstimadores extends JDialog{
                     if(!indicador[i].getText().isEmpty()){
                         switch(i){
                             case 0:
-                            if(Float.parseFloat(indicador[0].getText()) > pais[0].hope.VALOR_MAXIMO 
-                                || Float.parseFloat(indicador[0].getText()) < pais[0].hope.VALOR_MINIMO ) {
+                            if(Float.parseFloat(indicador[0].getText()) > temp.getEsperanza().VALOR_MAXIMO
+                                || Float.parseFloat(indicador[0].getText()) < temp.getEsperanza().VALOR_MINIMO ) {
                                 JOptionPane.showMessageDialog(this, "No ha respetado los limites de los indices", "error", 
                                     JOptionPane.ERROR_MESSAGE);
                                 break loop1;
                             }else{
-                                pais[r].valores[0] = Float.parseFloat(indicador[0].getText());
-                                pais[r].hope.calcularIndice(pais[0].hope.VALOR_MAXIMO, pais[0].hope.VALOR_MINIMO,
+                                temp.setHope(Float.parseFloat(indicador[0].getText()));  
+                                temp.getEsperanza().calcularIndice(temp.getEsperanza().VALOR_MAXIMO, temp.getEsperanza().VALOR_MINIMO,
                                             Float.parseFloat(indicador[0].getText()));
-                                System.out.println(pais[r].hope.getIndex());
+                                System.out.println(temp.getIndice('0'));
                             }
                             
                             case 1:
-                                if(Float.parseFloat(indicador[1].getText()) > pais[0].education.VALOR_MAXIMO 
-                                    || Float.parseFloat(indicador[1].getText()) < pais[0].education.VALOR_MINIMO ) {
+                                if(Float.parseFloat(indicador[1].getText()) >  temp.getEducacion().VALOR_MAXIMO 
+                                    || Float.parseFloat(indicador[1].getText()) < temp.getEducacion().VALOR_MINIMO ) {
                                     JOptionPane.showMessageDialog(this, "No ha respetado los limites de los indices", "error", 
                                     JOptionPane.ERROR_MESSAGE);
                                     break loop1;
                                 }else{
-                                pais[r].valores[1] = Float.parseFloat(indicador[1].getText());
-                                pais[r].education.calcularIndice(pais[0].education.VALOR_MAXIMO, 
-                                            pais[0].education.VALOR_MINIMO, Float.parseFloat(indicador[1].getText()),
+                                temp.setAlfabetizacion(Float.parseFloat(indicador[1].getText()));
+                                temp.getEducacion().calcularIndice(temp.getEducacion().VALOR_MAXIMO, 
+                                            temp.getEducacion().VALOR_MINIMO, Float.parseFloat(indicador[1].getText()),
                                             Float.parseFloat(indicador[2].getText()));
-                                    System.out.println(pais[r].education.getIndex());
+                                    System.out.println(temp.getIndice('1'));
                              }
                            
                             case 2: 
-                                if(Float.parseFloat(indicador[2].getText()) > pais[0].education.VALOR_MAXIMO 
-                                    || Float.parseFloat(indicador[2].getText()) < pais[0].education.VALOR_MINIMO ) {
-                                    
+                                if(Float.parseFloat(indicador[2].getText()) >  temp.getEducacion().VALOR_MAXIMO 
+                                    || Float.parseFloat(indicador[2].getText()) < temp.getEducacion().VALOR_MINIMO ) {
                                     JOptionPane.showMessageDialog(this, "No ha respetado los limites de los indices", "error", 
                                     JOptionPane.ERROR_MESSAGE);
-                                    
                                     break loop1;
                                 }else{
-                                pais[r].valores[2] = Float.parseFloat(indicador[2].getText());
-                                pais[r].education.calcularIndice(pais[0].education.VALOR_MAXIMO, 
-                                            pais[0].education.VALOR_MINIMO, Float.parseFloat(indicador[1].getText()),
+                                temp.setMatricula(Float.parseFloat(indicador[2].getText()));
+                                temp.getEducacion().calcularIndice(temp.getEducacion().VALOR_MAXIMO, 
+                                            temp.getEducacion().VALOR_MINIMO, Float.parseFloat(indicador[1].getText()),
                                             Float.parseFloat(indicador[2].getText()));
-                                    System.out.println(pais[r].education.getIndex());
+                                    System.out.println(temp.getIndice('1'));
                              }
                                 
                             case 3:
                                 if(java.lang.Math.log10( Float.parseFloat(indicador[3].getText())) >  java.lang.Math.log10(40000)
-                                    || java.lang.Math.log10(Float.parseFloat(indicador[3].getText())) < pais[0].productoInterno.VALOR_MINIMO ) {
+                                    || java.lang.Math.log10(Float.parseFloat(indicador[3].getText())) < temp.getPIB().VALOR_MINIMO ) {
                                     System.out.println("++++++++++++++++++++++");
                                     System.out.println(indicador[i].getText());
                                     JOptionPane.showMessageDialog(this, "No ha respetado los limites de los indices  3", "error", 
                                     JOptionPane.ERROR_MESSAGE);
                                     break loop1;
                                 }else{
-                                 pais[r].valores[3] = Float.parseFloat(indicador[3].getText());
-                                 pais[r].productoInterno.calcularIndice(pais[0].productoInterno.VALOR_MAXIMO,
-                                            pais[0].productoInterno.VALOR_MINIMO, (float) java.lang.Math.log10(Float.parseFloat(indicador[3].getText())));
+                                 temp.setProducto(Float.parseFloat(indicador[3].getText()));
+                                 temp.getPIB().calcularIndice(temp.getPIB().VALOR_MAXIMO,
+                                            temp.getPIB().VALOR_MINIMO, (float) java.lang.Math.log10(Float.parseFloat(indicador[3].getText())));
                                   //Finalmente Calculando el IDH
-                                  pais[r].desarrollo.calcularIDH(pais[r].hope.getIndex(), pais[r].education.getIndex(),
-                                         pais[r].productoInterno.getIndex());
+                                  temp.getIDH().calcularIDH( temp.getIndice('0') , temp.getIndice('1'),
+                                         temp.getIndice('2'));
                                   JOptionPane.showMessageDialog(this, "Estimadores ingresados!", "exito", JOptionPane.INFORMATION_MESSAGE);
                                   this.setVisible(false);
                                   ventanaPadre.setVisible(true);
