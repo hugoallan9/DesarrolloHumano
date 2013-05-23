@@ -92,6 +92,14 @@ public class Menu extends javax.swing.JFrame {
         boton3.setText("Grafica Circular");
 
         boton5.setText("Estadisticas");
+        boton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                boton5MousePressed(evt);
+            }
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                boton5MouseClicked(evt);
+            }
+        });
 
         boton6.setText("Grafica de Avance");
 
@@ -279,6 +287,16 @@ public class Menu extends javax.swing.JFrame {
         text.escribirContador(Menu.contador);
         JOptionPane.showMessageDialog(rootPane, "Datos Guardados");
     }//GEN-LAST:event_guardarItemMousePressed
+
+    private void boton5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton5MousePressed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_boton5MousePressed
+
+    private void boton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton5MouseClicked
+        // TODO add your handling code here:
+        Estadistica dia5 = new Estadistica( this , country, false);
+    }//GEN-LAST:event_boton5MouseClicked
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -1,6 +1,6 @@
 <HTML lang = " es " >
 	 <HEAD>
-		 <TITLE> Reporte Por Pais</TITLE> 
+		 <TITLE> Top 5 Año: 1982</TITLE> 
 <style type="text/css">
 <!--
 @import url("style.css");
@@ -8,26 +8,60 @@
 </style>	 </HEAD> 
 	 <BODY> 
 <div align = "center"> 
-	 <b><font size = 7>Reporte Por Pais</font></b> 
+	 <b><font size = 7>Top 5 Año: 1982</font></b> 
 </div> 
 
 <div align = "center"> 
-      <table id="box-table-b" width="100" cellspacing="2" cellpadding="25" border="0" bgcolor="#165480"><thead>
+      <table id="newspaper-b" width="100" cellspacing="2" cellpadding="25" border="0"><thead>
 <tr>
 <th scope="col"> ID </th>
 <th scope="col"> NOMBRE</th>
 <th scope="col"> BANDERA</th>
 <th scope="col"> CONTINENTE </th>
 <th scope="col"> AÑO </th>
-<th scope="col"> ESPERANZA </th>
-<th scope="col"> EDUCACION </th>
-<th scope="col"> PIB </th>
 <th scope="col"> IDH </th>
+<th scope="col"> POSICION </th>
 </tr>
 </thead><tbody><tr>
     <td >
    <font face="verdana, arial, helvetica" size=2>
-3
+2
+   </font>
+   </td>
+    <td >
+   <font face="verdana, arial, helvetica" size=2>
+MEXICO
+   </font>
+   </td>
+    <td >
+   <font face="verdana, arial, helvetica" size=2>
+<IMG SRC=" /mnt/Datos/Dropbox/Sistemas/IPC1 2013/Proyecto/DesarrolloHumano/src/Banderas/flag_MX.gif" ALT="Bandera No Disponible ">
+   </font>
+   </td>
+    <td >
+   <font face="verdana, arial, helvetica" size=2>
+AMERICA
+   </font>
+   </td>
+    <td >
+   <font face="verdana, arial, helvetica" size=2>
+1982
+   </font>
+   </td>
+    <td >
+   <font face="verdana, arial, helvetica" size=2>
+0.0
+   </font>
+   </td>
+</tr>    <td >
+   <font face="verdana, arial, helvetica" size=5 -1>
+1
+   </font>
+   </td>
+</tr><tr>
+    <td >
+   <font face="verdana, arial, helvetica" size=2>
+1
    </font>
    </td>
     <td >
@@ -47,7 +81,7 @@ AMERICA
    </td>
     <td >
    <font face="verdana, arial, helvetica" size=2>
-1945
+1982
    </font>
    </td>
     <td >
@@ -55,19 +89,9 @@ AMERICA
 0.0
    </font>
    </td>
-    <td >
-   <font face="verdana, arial, helvetica" size=2>
-0.0
-   </font>
-   </td>
-    <td >
-   <font face="verdana, arial, helvetica" size=2>
-0.0
-   </font>
-   </td>
-    <td >
-   <font face="verdana, arial, helvetica" size=2>
-0.0
+</tr>    <td >
+   <font face="verdana, arial, helvetica" size=5-2>
+2
    </font>
    </td>
 </tr></table>

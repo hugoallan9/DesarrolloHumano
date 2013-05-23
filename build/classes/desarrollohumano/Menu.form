@@ -149,6 +149,10 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Estadisticas"/>
       </Properties>
+      <Events>
+        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="boton5MousePressed"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="boton5MouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="boton6">
       <Properties>

@@ -17,7 +17,7 @@ public class Reporte {
     
     
     Reporte(Lista particular){
-        this.reporte = particular;
+        this.reporte = (Lista) particular.clone();
     }
     
     /**
@@ -91,10 +91,14 @@ public class Reporte {
         //para que reporte quede ordenada.
         
         //Recorriendo la lista reportes
-        for(int i = 0 ; i < reporte.getPosicion(); i++){
+        for(int i = 1 ; i <= reporte.getPosicion(); i++){
             Pais temp = reporte.accesoAleatorio(i);
-            if( temp.getName().equalsIgnoreCase(nombreCont) ){
-                continente.ingresoNodo(temp);
+            String nombre = temp.getContinent();
+            if( nombre.equalsIgnoreCase(nombreCont) ){
+                Pais nuevo = (Pais) temp.clone();
+                nuevo.setRightLink(null);
+                nuevo.setLeftLink(null);
+                continente.ingresoNodo( nuevo );
             }
         }
     }
@@ -157,6 +161,14 @@ public class Reporte {
         for(int i = 0 ; i < 4 ; i++){
             porcentaje[i] = ( rendimiento[i] * 100 ) / reporte.getPosicion();
         }
+    }
+    
+    public Lista getReporte(){
+        return reporte;
+    }
+    
+    public Lista getReporteContinental(){
+        return continente;
     }
     
     

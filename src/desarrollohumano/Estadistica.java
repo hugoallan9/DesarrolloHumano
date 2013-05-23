@@ -12,11 +12,12 @@ import javax.swing.JFrame;
  * @author hugo
  */
 public class Estadistica extends JDialog{
-    Pais[] pais = new Pais[25];
+    Lista pais = new Lista();
     JFrame ventanaPadre;
     
     
-    Estadistica(JFrame fr , Pais[] pais){
+    Estadistica(JFrame fr , Lista pais, boolean modal){
+        super(fr, modal);
         this.pais = pais;
         this.ventanaPadre = fr;
         this.setVisible(true);
